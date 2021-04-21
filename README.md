@@ -5,9 +5,11 @@ Private keys are generated randomly in keyspace 8000000000000000:fffffffffffffff
 
 # Expected Output
 
-Private key: 000000000000000000000000000000000000000000000000aefa56fbdbbd01dc
-Public key: 02d0e2c9f0ced488bc49778e38e18d06c8061a1a3ecbb32c7d65537950faefe480
-Address: 16jY7qLJnxhz6kvVeGpY4hVFYJV4SJz9Go
+Private key: 000000000000000000000000000000000000000000000000eb945aea12b44d16
+
+Public key: 030130edb5a5563537566f6a2b1bcb9f9a1e4ece84232ca9fc271b0056ba2fb754
+
+Address: 16jY7qLJnxb7CHZyqfjVHLgPJxGDhkSMGM
 
 # Installation
 
