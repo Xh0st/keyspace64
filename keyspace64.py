@@ -2,11 +2,16 @@
 # Made by Andrei Melek
 # https://github.com/xh0st/keyspace64
 
-    import subprocess
-    subprocess.check_call(["python", '-m', 'pip', 'install', 'bitcoin'])
-    from bitcoin import *
+try:
     import random
+    from bitcoin import *
 
+# If required imports are unavailable, we will attempt to install them!
+
+except ImportError: 
+    import subprocess
+    subprocess.check_call(["python3", '-m', 'pip', 'install', 'base58==1.0.0'])
+    from bitcoin import *
 
 while True:  
     low  = 0x8000000000000000 
