@@ -24,12 +24,13 @@ while True:
     n = addr
     if n.startswith('16jY7qLJnxb7C'):
         print ("found!!",addr,result)
-        k1 = priv
-        k2 = pub
-        k3 = addr
+        s1 = result
+        s2 = addr
+        s3 = pub
 
         file = open('boom.txt', 'a')
-        file.write("Private key: " + k1 + '\n' + "Public key: " + k2 + '\n' + "Address: " + k2 + '\n\n')    
+        file.write("Private key: " + s1 + '\n' + "Public key: " + s3 + '\n' + "Address: " + s2 + '\n\n')    
         file.close()
     else:
         print ("searching...",addr,result)
+
