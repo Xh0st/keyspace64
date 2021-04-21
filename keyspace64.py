@@ -11,6 +11,7 @@ try:
 except ImportError: 
     import subprocess
     subprocess.check_call(["python", '-m', 'pip', 'install', 'bitcoin'])
+    from bitcoin import *
 
 while True:  
     low  = 0x8000000000000000 
