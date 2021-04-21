@@ -41,7 +41,7 @@ while True:
         k3 = addr
 
         file = open('boom.txt', 'a')
-        file.write("Private key: " + s1 + '\n' + "Public key: " + s2 + '\n' + "Address: " + s3 + '\n\n')    
+        file.write("Private key: " + k1 + '\n' + "Public key: " + k2 + '\n' + "Address: " + k3 + '\n\n')    
         file.close()
     else:
         print ("searching...",addr,private_key)
