@@ -22,14 +22,14 @@ while True:
     pubkey1 = encode_pubkey(privtopub(priv), "bin_compressed")
     addr = pubtoaddr(pubkey1)
     n = addr
-    if n.startswith('16jY7qLJnxb7C'):
+    if n.startswith('16jY7qLJnx'):
         print ("found!!",addr,result)
-        s1 = result
-        s2 = addr
-        s3 = pub
+        k1 = result
+        k2 = pub
+        k3 = addr
 
         file = open('boom.txt', 'a')
-        file.write("Private key: " + s1 + '\n' + "Public key: " + s3 + '\n' + "Address: " + s2 + '\n\n')    
+        file.write("Private key: " + k1 + '\n' + "Public key: " + k2 + '\n' + "Address: " + k3 + '\n\n')    
         file.close()
     else:
         print ("searching...",addr,result)
