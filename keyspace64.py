@@ -16,7 +16,8 @@ while True:
     low  = 0x8000000000000000 
     high = 0xffffffffffffffff
     val = str ( hex ( random.randrange( low, high ) ) )[2:]
-    priv = val.rjust(48 + len(val), '0')
+    result = val.rjust(48 + len(val), '0')
+    priv = result
     pub = privtopub(priv)
     pubkey1 = encode_pubkey(privtopub(priv), "bin_compressed")
     addr = pubtoaddr(pubkey1)
