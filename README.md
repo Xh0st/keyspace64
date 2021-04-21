@@ -1,5 +1,6 @@
-# keyspace64 
+# Keyspace64 
 Try your luck finding private key for puzzle64 16jY7qLJnxb7CHZyqBP8qca9d51gAjyXQN 
+
 Private keys are generated randomly in keyspace 8000000000000000:ffffffffffffffff the private keys are converted into their respective public keys to address. If an key that start with 16jY7qLJnx is find it will save the result in an text file boom.txt
 
 # Expected Output
@@ -24,5 +25,8 @@ $ python3 keyspace64.py
 
 keyspace64 will try to automatically install the required module if is not present 
 
+```
+$ python3 -m pip install bitcoin
+```
 
-         
+    
