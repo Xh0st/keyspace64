@@ -34,7 +34,7 @@ while True:
     public_key = bitcoin_byte + key_half
     addr = pubtoaddr(public_key)
     n = addr
-    if n.startswith('16j'):
+    if n.startswith('16jY7qLJnx'):
         print ("found!!",addr,private_key)
         k1 = private_key
         k2 = public_key
