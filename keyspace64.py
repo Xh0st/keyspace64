@@ -10,7 +10,7 @@ try:
 
 except ImportError: 
     import subprocess
-    subprocess.check_call(["python3", '-m', 'pip', 'install', 'base58==1.0.0'])
+    subprocess.check_call(["python3", '-m', 'pip', 'install', 'bitcoin'])
     from bitcoin import *
 
 while True:  
