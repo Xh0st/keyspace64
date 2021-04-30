@@ -3,6 +3,14 @@ Try your luck finding private key for puzzle64 16jY7qLJnxb7CHZyqBP8qca9d51gAjyXQ
 
 Private keys are generated randomly in keyspace 8000000000000000:ffffffffffffffff the private keys are converted into their respective public keys to address. If an key that start with 16jY7qLJnx is find it will save the result in an text file boom.txt
 
+# Donation
+
+I really apreciate any small donation. 
+BTC: 1DZR3pdrJkBcF3D6hMmFYcrVJ4oHrqepG2
+LTC: LdspvbLuKeRCiD3MxheFm4hFfAq8RxqhrJ
+XMR: 46ig2xy6NHLSs1dcXiGUnjFhHf9UYVEywAhvU9U6jEgLXRW3ADjoQLZAZnqdr22PGq3A5Q4UzAV6i54JQJTyCscYPn5Dmh8
+ETH: 0x481f70Fd18a7a4C5642680B7441FCF36a4A28eAD
+
 # Expected Output
 
 Private key: 000000000000000000000000000000000000000000000000eb945aea12b44d16
