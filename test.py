@@ -63,10 +63,10 @@ def get_airdrop_users():
 
 
 defaultkeyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-defaultkeyboard.row(types.KeyboardButton('🚀 Join Airdrop'))
+defaultkeyboard.row(types.KeyboardButton('💎 Join Airdrop'))
 
 airdropkeyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-airdropkeyboard.row(types.KeyboardButton('💼 View Wallet Address'))
+airdropkeyboard.row(types.KeyboardButton('💳 View Wallet Address'))
 
 
 def cancel_button():
@@ -100,24 +100,24 @@ def handle_text(message):
             cursor.execute(sql, message.chat.id)
         if message.chat.id in airdrop_users:
             bot.send_message(message.chat.id, config.texts['start_2'].format(
-                message.from_user.first_name) + "[» Source Code](https://github.com/fabston/Telegram-Airdrop-Bot).",
+                message.from_user.first_name) + "[🌐 Website](https://jadeite.site)" + "[ 📱Telegram](https://t.me/JadeiteToken)",
                              parse_mode='Markdown', disable_web_page_preview=True, reply_markup=airdropkeyboard)
         elif not config.airdrop_live:
             bot.send_message(message.chat.id, config.texts[
-                'airdrop_start'] + "[» Source Code](https://github.com/fabston/Telegram-Airdrop-Bot).",
+                'airdrop_start'] + '\n\n' + "[🌐 Website](https://jadeite.site)" + "[ 📱Telegram](https://t.me/JadeiteToken)",
                              parse_mode='Markdown', disable_web_page_preview=True)
         elif len(airdrop_users) >= config.airdrop_cap:
             bot.send_message(message.chat.id, config.texts[
-                'airdrop_max_cap'] + "[» Source Code](https://github.com/fabston/Telegram-Airdrop-Bot).",
+                'airdrop_max_cap'] + "[🌐 Website](https://jadeite.site)" + "[ 📱Telegram](https://t.me/JadeiteToken)",
                              parse_mode='Markdown', disable_web_page_preview=True)
         else:
             bot.send_message(message.chat.id, config.texts['start_1'].format(
-                message.from_user.first_name) + "[» Source Code](https://github.com/fabston/Telegram-Airdrop-Bot).",
+                message.from_user.first_name) + "[🌐 Website](https://jadeite.site)" + "[ 📱Telegram](https://t.me/JadeiteToken)",
                              parse_mode='Markdown', disable_web_page_preview=True, reply_markup=defaultkeyboard)
 
 
 @bot.message_handler(func=lambda
-        message: message.chat.type == 'private' and message.from_user.id not in airdrop_users and message.text == '🚀 Join Airdrop')
+        message: message.chat.type == 'private' and message.from_user.id not in airdrop_users and message.text == '💎 Join Airdrop')
 def handle_text(message):
     bot.send_chat_action(message.chat.id, 'typing')
     if not config.airdrop_live:
@@ -134,7 +134,7 @@ def handle_text(message):
 
 
 @bot.message_handler(func=lambda
-        message: message.chat.type == 'private' and message.from_user.id in airdrop_users and message.text == '💼 View Wallet Address')
+        message: message.chat.type == 'private' and message.from_user.id in airdrop_users and message.text == '💳 View Wallet Address')
 def handle_text(message):
     connection = get_connection()
     with connection.cursor() as cursor:
@@ -142,7 +142,7 @@ def handle_text(message):
         cursor.execute(sql, message.chat.id)
         data = cursor.fetchall()
         bot.send_message(message.chat.id,
-                         text='Your tokens will be sent to:\n\n[{0}](https://etherscan.io/address/{0})'.format(
+                         text='💎 Your JDT tokens will be sent to:\n\n[{0}](https://bscscan.com/address/{0})'.format(  
                              data[0]['address']), parse_mode='Markdown', disable_web_page_preview=True,
                          reply_markup=update_wallet_address_button(message))
 
@@ -166,20 +166,24 @@ def address_check(message):
             airdrop_wallets.append(message.text)
             airdrop_users.append(message.chat.id)
             try:
-                bot.send_message(config.log_channel, "🎈 *#Airdrop_Entry ({0}):*\n"
-                                                     " • User: [{1}](tg://user?id={2}) (#id{2})\n"
-                                                     " • Address: [{3}](https://etherscan.io/address/{3})\n"
-                                                     " • Time: `{4} UTC`".format(len(airdrop_users), bot.get_chat(
-                    message.chat.id).first_name, message.chat.id, message.text, strftime("%Y-%m-%d %H:%M:%S",
-                                                                                         gmtime())),
+                bot.send_message(config.log_channel, "💜*Jadeite Airdrop Entry ({0}):*\n"
+                                                     "🔹 User: [{1}](tg://user?id={2})\n"
+                                                     "🔹 Join us on our journey!\n"
+                                                     "🔹 Address: [{3}](https://bscscan.com/address/{3})\n"
+                                                     "🔹 Time: `{4} UTC`\n\n"
+                                                                                                                                                     
+                                                     "[🌐 Website ](https://jadeite.site)"                                                                                                                                                          
+                                                     "[ |  💎 Twitter](https://twitter.com/JadeiteToken)".format(len(airdrop_users), bot.get_chat(
+                    message.chat.id).first_name, message.chat.id, message.text, strftime("%d-%m %H:%M",
+                                                                                         gmtime())),                                                                                                                                     
+                                                     
                                  parse_mode='Markdown', disable_web_page_preview=True)
             except:
                 pass
         else:
-            msg = bot.reply_to(message, '❌ Invalid $ETH address. Try again:', parse_mode='Markdown',
+            msg = bot.reply_to(message, '❌ Invalid address. Try again:', parse_mode='Markdown',
                                reply_markup=cancel_button())
             bot.register_next_step_handler(msg, address_check)
-
 
 def address_check_update(message, old_address):
     bot.send_chat_action(message.chat.id, 'typing')
@@ -194,17 +198,18 @@ def address_check_update(message, old_address):
             bot.reply_to(message, config.texts['airdrop_wallet_update'], parse_mode='Markdown')
             airdrop_wallets.append(message.text)
             try:
-                bot.send_message(config.log_channel, "📝 *#Address_Updated:*\n"
-                                                     " • User: [{1}](tg://user?id={2}) (#id{2})\n"
-                                                     " • Old Address: [{3}](https://etherscan.io/address/{3})\n"
-                                                     " • New Address: [{4}](https://etherscan.io/address/{4})\n"
-                                                     " • Time: `{5} UTC`".format(len(airdrop_wallets),
-                                                                                 bot.get_chat(
-                                                                                     message.chat.id).first_name,
-                                                                                 message.chat.id, old_address,
-                                                                                 message.text,
-                                                                                 strftime("%Y-%m-%d %H:%M:%S",
-                                                                                          gmtime())),
+                bot.send_message(config.log_channel, "💜*Jadeite Airdrop Update ({0}):*\n"
+                                                     "🔹 User: [{1}](tg://user?id={2})\n"
+                                                     "🔹 Join us on our journey!\n"
+                                                     "🔹 Old Address: [{3}](https://bscscan.com/address/{3})\n"
+                                                     "🔹 New Address: [{4}](https://bscscan.com/address/{4})\n"
+                                                     "🔹 Time: `{4} UTC`\n\n"
+                                                                                                                                                     
+                                                     "[🌐 Website ](https://jadeite.site)"                                                                                                                                                          
+                                                     "[ |  💎 Twitter](https://twitter.com/JadeiteToken)".format(len(airdrop_users), bot.get_chat(
+                    message.chat.id).first_name, message.chat.id, message.text, strftime("%d-%m %H:%M",
+                                                                                         gmtime())),                                                                                                                                     
+                                                     
                                  parse_mode='Markdown', disable_web_page_preview=True)
             except:
                 pass
